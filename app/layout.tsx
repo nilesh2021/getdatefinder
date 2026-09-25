@@ -53,27 +53,31 @@ export const viewport: Viewport = {
   themeColor: "#ec4899",
 };
 
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <head>
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-PWW3SRBMS2"
-          strategy="beforeInteractive"
-        />
-        <Script id="google-gtag" strategy="beforeInteractive">
-          {`
+      {gaId ? (
+        <head>
+          <Script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+            strategy="beforeInteractive"
+          />
+          <Script id="google-gtag" strategy="beforeInteractive">
+            {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-PWW3SRBMS2');
+            gtag('config', '${gaId}');
           `}
-        </Script>
-      </head>
+          </Script>
+        </head>
+      ) : null}
       <body className="flex min-h-full flex-col bg-background text-foreground">
         {children}
       </body>
