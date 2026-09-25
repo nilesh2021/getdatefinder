@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
@@ -58,6 +59,21 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-PWW3SRBMS2"
+          strategy="beforeInteractive"
+        />
+        <Script id="google-gtag" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-PWW3SRBMS2');
+          `}
+        </Script>
+      </head>
       <body className="flex min-h-full flex-col bg-background text-foreground">
         {children}
       </body>
