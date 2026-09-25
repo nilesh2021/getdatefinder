@@ -1,26 +1,86 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fbf8fc;
+  --foreground: #1c1526;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+
+  /* Brand palette: pink -> purple */
+  --color-brand-50: #fdf2f8;
+  --color-brand-100: #fce7f3;
+  --color-brand-200: #fbcfe8;
+  --color-brand-300: #f9a8d4;
+  --color-brand-400: #f472b6;
+  --color-brand-500: #ec4899;
+  --color-brand-600: #db2777;
+  --color-brand-700: #be185d;
+
+  --color-violet-50: #f5f3ff;
+  --color-violet-100: #ede9fe;
+  --color-violet-200: #ddd6fe;
+  --color-violet-400: #a78bfa;
+  --color-violet-500: #8b5cf6;
+  --color-violet-600: #7c3aed;
+  --color-violet-700: #6d28d9;
+
+  /* Neutrals with a faint purple tint */
+  --color-ink-900: #1c1526;
+  --color-ink-800: #2d2440;
+  --color-ink-700: #3f3550;
+  --color-ink-600: #5b5070;
+  --color-ink-500: #7a6f8d;
+  --color-ink-300: #cfc7dc;
+  --color-ink-200: #e6e0ee;
+  --color-ink-100: #f1edf6;
+  --color-surface: #ffffff;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
+
+  --shadow-card: 0 1px 2px rgb(28 21 38 / 0.04), 0 8px 24px -12px rgb(124 58 237 / 0.18);
+  --shadow-card-hover: 0 2px 4px rgb(28 21 38 / 0.05), 0 18px 40px -16px rgb(219 39 119 / 0.28);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-violet-500);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}
+
+@utility bg-brand-gradient {
+  background-image: linear-gradient(135deg, var(--color-brand-500) 0%, var(--color-violet-600) 100%);
+}
+
+@utility text-brand-gradient {
+  background-image: linear-gradient(135deg, var(--color-brand-600) 0%, var(--color-violet-600) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Native <details> marker cleanup for the FAQ accordion */
+summary::-webkit-details-marker {
+  display: none;
 }
