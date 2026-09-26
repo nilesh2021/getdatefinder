@@ -13,7 +13,7 @@ export function OfferCard({ offer }: OfferCardProps) {
   return (
     <article
       aria-labelledby={headingId}
-      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-ink-200 bg-surface shadow-card transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-card-hover focus-within:-translate-y-1 focus-within:shadow-card-hover"
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/8 bg-surface shadow-card transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-brand-400/40 hover:shadow-card-hover focus-within:-translate-y-1 focus-within:shadow-card-hover"
     >
       <div className="relative aspect-[16/10] overflow-hidden">
         <Image
@@ -23,7 +23,11 @@ export function OfferCard({ offer }: OfferCardProps) {
           sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <span className="absolute top-3 left-3 rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-brand-700 shadow-sm">
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-surface to-transparent"
+        />
+        <span className="absolute top-3 left-3 rounded-full border border-white/10 bg-ink-950/70 px-2.5 py-1 text-xs font-semibold text-ink-900 backdrop-blur">
           {offer.category}
         </span>
       </div>
@@ -33,7 +37,7 @@ export function OfferCard({ offer }: OfferCardProps) {
           <OfferLogo offer={offer} size={40} />
           <h3
             id={headingId}
-            className="truncate text-lg font-semibold tracking-tight text-ink-900"
+            className="truncate font-display text-xl font-medium tracking-tight text-ink-900"
           >
             {offer.name}
           </h3>
@@ -44,7 +48,7 @@ export function OfferCard({ offer }: OfferCardProps) {
         <ul className="mt-4 space-y-2" aria-label={`${offer.name} key features`}>
           {offer.features.map((feature) => (
             <li key={feature} className="flex items-start gap-2.5 text-sm text-ink-700">
-              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-100 text-violet-700">
+              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/15 text-brand-300">
                 <CheckIcon className="h-3 w-3" />
               </span>
               {feature}
@@ -57,7 +61,7 @@ export function OfferCard({ offer }: OfferCardProps) {
             href={`/go/${offer.id}`}
             target="_blank"
             rel="noopener noreferrer nofollow sponsored"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-gradient px-5 py-3 text-sm font-semibold text-white shadow-sm transition-[opacity,box-shadow] duration-200 hover:opacity-90 hover:shadow-md"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-500 px-5 py-3 text-sm font-semibold text-ink-950 shadow-sm transition-colors duration-200 hover:bg-brand-400"
           >
             Visit Offer
             <ExternalLinkIcon className="h-4 w-4" />

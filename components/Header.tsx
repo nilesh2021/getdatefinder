@@ -28,7 +28,7 @@ export function Header() {
   const close = () => setOpen(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-ink-200/70 bg-background/85 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-white/8 bg-background/80 backdrop-blur-md">
       <Container>
         <nav aria-label="Primary" className="flex h-16 items-center justify-between gap-4 sm:h-20">
           <Logo onClick={close} />
@@ -38,7 +38,7 @@ export function Header() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium text-ink-700 transition-colors hover:bg-ink-100 hover:text-ink-900"
+                  className="whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium text-ink-600 transition-colors hover:bg-white/5 hover:text-ink-900"
                 >
                   {link.label}
                 </Link>
@@ -49,7 +49,7 @@ export function Header() {
           <div className="flex items-center gap-2">
             <Link
               href="/#offers"
-              className="hidden whitespace-nowrap rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-[opacity,box-shadow] hover:opacity-90 hover:shadow-md sm:inline-flex"
+              className="hidden whitespace-nowrap rounded-full bg-brand-500 px-5 py-2.5 text-sm font-semibold text-ink-950 shadow-sm transition-colors hover:bg-brand-400 sm:inline-flex"
             >
               Explore Offers
             </Link>
@@ -60,7 +60,7 @@ export function Header() {
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? "Close menu" : "Open menu"}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full text-ink-700 transition-colors hover:bg-ink-100 lg:hidden"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full text-ink-700 transition-colors hover:bg-white/5 lg:hidden"
             >
               {open ? <CloseIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
             </button>
@@ -71,7 +71,7 @@ export function Header() {
       <div
         id="mobile-menu"
         hidden={!open}
-        className="border-t border-ink-200 bg-background lg:hidden"
+        className="border-t border-white/8 bg-background lg:hidden"
       >
         <Container className="py-4">
           <ul className="flex flex-col gap-1">
@@ -80,7 +80,7 @@ export function Header() {
                 <Link
                   href={link.href}
                   onClick={close}
-                  className="block rounded-xl px-4 py-3 text-base font-medium text-ink-800 transition-colors hover:bg-ink-100"
+                  className="block rounded-xl px-4 py-3 text-base font-medium text-ink-800 transition-colors hover:bg-white/5"
                 >
                   {link.label}
                 </Link>
@@ -90,7 +90,7 @@ export function Header() {
               <Link
                 href="/#offers"
                 onClick={close}
-                className="flex items-center justify-center rounded-full bg-brand-gradient px-5 py-3 text-base font-semibold text-white shadow-sm"
+                className="flex items-center justify-center rounded-full bg-brand-500 px-5 py-3 text-base font-semibold text-ink-950 shadow-sm"
               >
                 Explore Offers
               </Link>

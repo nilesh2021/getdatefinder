@@ -32,10 +32,10 @@ export function OfferBrowser({ offers }: OfferBrowserProps) {
               type="button"
               aria-pressed={selected}
               onClick={() => setFilter(item)}
-              className={`rounded-full px-3.5 py-1.5 text-sm font-semibold transition-colors ${
+              className={`rounded-full px-4 py-1.5 text-sm font-semibold transition-colors ${
                 selected
-                  ? "bg-brand-gradient text-white shadow-sm"
-                  : "bg-white text-ink-700 ring-1 ring-ink-200 hover:bg-brand-50"
+                  ? "bg-brand-500 text-ink-950 shadow-sm"
+                  : "bg-white/5 text-ink-700 ring-1 ring-white/10 hover:bg-white/10 hover:text-ink-900"
               }`}
             >
               {item}
@@ -45,7 +45,7 @@ export function OfferBrowser({ offers }: OfferBrowserProps) {
       </div>
 
       {visible.length === 0 ? (
-        <p className="mt-8 rounded-2xl border border-ink-200 bg-white px-6 py-8 text-center text-sm text-ink-600">
+        <p className="mt-8 rounded-2xl border border-white/8 bg-surface px-6 py-8 text-center text-sm text-ink-600">
           {`No ${filter} offers listed yet.`}
         </p>
       ) : (

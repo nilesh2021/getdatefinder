@@ -17,10 +17,10 @@ export function LegalPage({ content }: LegalPageProps) {
       <main id="main" className="flex-1 py-16 sm:py-20">
         <Container>
           <article className="mx-auto max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-wider text-brand-600">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-400">
               Legal
             </p>
-            <h1 className="mt-3 text-4xl font-bold tracking-tight text-ink-900 sm:text-5xl">
+            <h1 className="mt-4 font-display text-4xl font-medium leading-[1.05] tracking-tight text-ink-900 sm:text-5xl lg:text-6xl">
               {content.title}
             </h1>
             <p className="mt-6 text-lg leading-8 text-ink-600">{content.intro}</p>
@@ -28,7 +28,7 @@ export function LegalPage({ content }: LegalPageProps) {
             <div className="mt-12 space-y-10">
               {content.sections.map((section) => (
                 <section key={section.heading}>
-                  <h2 className="text-2xl font-semibold tracking-tight text-ink-900">
+                  <h2 className="font-display text-2xl font-medium tracking-tight text-ink-900">
                     {section.heading}
                   </h2>
                   {section.paragraphs.map((paragraph) => (
@@ -42,7 +42,7 @@ export function LegalPage({ content }: LegalPageProps) {
 
             <Link
               href="/#offers"
-              className="mt-14 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
+              className="mt-14 inline-flex items-center gap-2 rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-ink-950 shadow-sm transition-colors hover:bg-brand-400"
             >
               Back to dating offers
               <ArrowRightIcon className="h-4 w-4" />

@@ -17,11 +17,11 @@ export default function NotFound() {
       <main id="main" className="flex flex-1 items-center py-24">
         <Container>
           <div className="mx-auto max-w-xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-wider text-brand-600">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-400">
               404
             </p>
-            <h1 className="mt-3 text-4xl font-bold tracking-tight text-ink-900 sm:text-5xl">
-              That page does not exist
+            <h1 className="mt-4 font-display text-4xl font-medium leading-[1.05] tracking-tight text-ink-900 sm:text-5xl">
+              That page <span className="text-accent-italic">does not exist</span>
             </h1>
             <p className="mt-5 text-lg leading-8 text-ink-600">
               The link may be out of date. Head back to the homepage to browse the
@@ -29,7 +29,7 @@ export default function NotFound() {
             </p>
             <Link
               href="/#offers"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-7 py-3.5 text-base font-semibold text-white shadow-md transition-opacity hover:opacity-90"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-500 px-7 py-3.5 text-base font-semibold text-ink-950 shadow-md transition-colors hover:bg-brand-400"
             >
               Explore Offers
               <ArrowRightIcon className="h-4 w-4" />

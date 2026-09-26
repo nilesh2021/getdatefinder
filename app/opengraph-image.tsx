@@ -17,9 +17,10 @@ export default function Image() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          background: "linear-gradient(135deg, #ec4899 0%, #7c3aed 100%)",
-          color: "#ffffff",
-          fontFamily: "sans-serif",
+          background:
+            "radial-gradient(ellipse 70% 60% at 20% 15%, rgba(217,130,95,0.28), transparent 70%), radial-gradient(ellipse 60% 60% at 90% 100%, rgba(185,88,59,0.22), transparent 70%), #171210",
+          color: "#f3ece4",
+          fontFamily: "Georgia, 'Times New Roman', serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
@@ -28,7 +29,8 @@ export default function Image() {
               width: 64,
               height: 64,
               borderRadius: 20,
-              background: "rgba(255,255,255,0.2)",
+              background: "#d9825f",
+              color: "#171210",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -37,7 +39,7 @@ export default function Image() {
           >
             ♥
           </div>
-          <div style={{ display: "flex", fontSize: 36, fontWeight: 700 }}>
+          <div style={{ display: "flex", fontSize: 36, fontWeight: 500 }}>
             {siteConfig.name}
           </div>
         </div>
@@ -46,20 +48,50 @@ export default function Image() {
           <div
             style={{
               display: "flex",
-              fontSize: 72,
-              fontWeight: 800,
-              lineHeight: 1.05,
-              maxWidth: 980,
+              fontSize: 22,
+              letterSpacing: 6,
+              textTransform: "uppercase",
+              color: "#e08a63",
+              fontFamily: "sans-serif",
             }}
           >
-            Discover online dating platforms worth your time
+            {`${offers.length} dating platforms to explore`}
           </div>
-          <div style={{ display: "flex", fontSize: 30, opacity: 0.9, maxWidth: 900 }}>
-            {`Compare ${offers.length} dating offers and visit the platform that fits you.`}
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              fontSize: 76,
+              fontWeight: 500,
+              lineHeight: 1.02,
+              maxWidth: 1000,
+              letterSpacing: -1.5,
+            }}
+          >
+            <span>Discover online dating platforms&nbsp;</span>
+            <span style={{ fontStyle: "italic", color: "#e08a63" }}>worth your time</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              fontSize: 28,
+              color: "#cdbfb4",
+              maxWidth: 900,
+              fontFamily: "sans-serif",
+            }}
+          >
+            Compare the offers and visit the platform that fits you.
           </div>
         </div>
 
-        <div style={{ display: "flex", fontSize: 24, opacity: 0.85 }}>
+        <div
+          style={{
+            display: "flex",
+            fontSize: 22,
+            color: "#8f8178",
+            fontFamily: "sans-serif",
+          }}
+        >
           18+ only. Links open external dating websites.
         </div>
       </div>

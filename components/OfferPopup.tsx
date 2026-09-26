@@ -63,21 +63,21 @@ export function OfferPopup({ offer }: OfferPopupProps) {
       <button
         type="button"
         aria-label="Close featured offer"
-        className="absolute inset-0 bg-ink-900/60"
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
         onClick={dismiss}
       />
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="relative z-10 flex max-h-[min(90vh,640px)] w-full max-w-md flex-col overflow-hidden rounded-3xl bg-surface shadow-card-hover"
+        className="relative z-10 flex max-h-[min(90vh,640px)] w-full max-w-md flex-col overflow-hidden rounded-3xl border border-white/10 bg-surface shadow-card-hover"
       >
         <button
           ref={closeRef}
           type="button"
           onClick={dismiss}
           aria-label="Close"
-          className="absolute top-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-ink-700 shadow-sm hover:text-ink-900"
+          className="absolute top-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-ink-950/70 text-ink-800 shadow-sm backdrop-blur hover:text-ink-900"
         >
           <span aria-hidden="true" className="text-lg leading-none">
             ×
@@ -92,18 +92,18 @@ export function OfferPopup({ offer }: OfferPopupProps) {
             sizes="(min-width: 640px) 448px, 100vw"
             className="object-cover"
           />
-          <span className="absolute top-3 left-3 rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-brand-700 shadow-sm">
+          <span className="absolute top-3 left-3 rounded-full border border-white/10 bg-ink-950/70 px-2.5 py-1 text-xs font-semibold text-ink-900 backdrop-blur">
             {offer.category}
           </span>
         </div>
 
         <div className="overflow-y-auto p-5">
-          <p className="text-xs font-semibold tracking-wide text-brand-700 uppercase">
+          <p className="text-xs font-semibold tracking-[0.2em] text-brand-400 uppercase">
             Featured offer
           </p>
           <div className="mt-2 flex items-center gap-3">
             <OfferLogo offer={offer} size={40} />
-            <h2 id={titleId} className="truncate text-lg font-semibold tracking-tight text-ink-900">
+            <h2 id={titleId} className="truncate font-display text-xl font-medium tracking-tight text-ink-900">
               {offer.name}
             </h2>
           </div>
@@ -111,7 +111,7 @@ export function OfferPopup({ offer }: OfferPopupProps) {
           <ul className="mt-4 space-y-2" aria-label={`${offer.name} key features`}>
             {features.map((feature) => (
               <li key={feature} className="flex items-start gap-2.5 text-sm text-ink-700">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-100 text-violet-700">
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/15 text-brand-300">
                   <CheckIcon className="h-3 w-3" />
                 </span>
                 {feature}
@@ -122,7 +122,7 @@ export function OfferPopup({ offer }: OfferPopupProps) {
             href={`/go/${offer.id}`}
             target="_blank"
             rel="noopener noreferrer nofollow sponsored"
-            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-gradient px-5 py-3 text-sm font-semibold text-white shadow-sm transition-[opacity,box-shadow] duration-200 hover:opacity-90 hover:shadow-md"
+            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-500 px-5 py-3 text-sm font-semibold text-ink-950 shadow-sm transition-colors duration-200 hover:bg-brand-400"
           >
             Visit Offer
             <ExternalLinkIcon className="h-4 w-4" />

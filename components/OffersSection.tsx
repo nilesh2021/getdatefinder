@@ -10,19 +10,31 @@ export function OffersSection() {
     <section
       id="offers"
       aria-labelledby="offers-heading"
-      className="scroll-mt-24 py-10 sm:py-12"
+      className="scroll-mt-24 py-14 sm:py-20"
     >
       <Container>
-        <SectionHeading
-          id="offers-heading"
-          eyebrow="Featured offers"
-          title="Dating offers you can explore today"
-          description="Every card below links to an external dating platform. Read the summary, compare the key features and visit the dating website that suits you."
-        />
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <SectionHeading
+            id="offers-heading"
+            align="left"
+            eyebrow="Featured offers"
+            title={
+              <>
+                Dating offers you can{" "}
+                <span className="text-accent-italic">explore today</span>
+              </>
+            }
+          />
+          <p className="max-w-sm text-sm leading-6 text-ink-500 lg:text-right">
+            Every card below links to an external dating platform. Read the
+            summary, compare the key features and visit the dating website that
+            suits you.
+          </p>
+        </div>
 
         <OfferBrowser offers={publicOffers} />
 
-        <p className="mt-6 text-center text-sm text-ink-500">
+        <p className="mt-8 text-center text-sm text-ink-500">
           Offer buttons open the external platform in a new tab. Availability may
           vary by country. Photos by photographers on Unsplash.
         </p>

@@ -1,48 +1,60 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fbf8fc;
-  --foreground: #1c1526;
+  --background: #171210;
+  --foreground: #f3ece4;
+  color-scheme: dark;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* Brand palette: pink -> purple */
-  --color-brand-50: #fdf2f8;
-  --color-brand-100: #fce7f3;
-  --color-brand-200: #fbcfe8;
-  --color-brand-300: #f9a8d4;
-  --color-brand-400: #f472b6;
-  --color-brand-500: #ec4899;
-  --color-brand-600: #db2777;
-  --color-brand-700: #be185d;
+  /* Brand palette: warm clay / terracotta */
+  --color-brand-50: #fbf1ec;
+  --color-brand-100: #f7e1d6;
+  --color-brand-200: #f1c9b6;
+  --color-brand-300: #e9a486;
+  --color-brand-400: #e08a63;
+  --color-brand-500: #d9825f;
+  --color-brand-600: #c9694a;
+  --color-brand-700: #b9583b;
+  --color-brand-800: #8f4530;
 
-  --color-violet-50: #f5f3ff;
-  --color-violet-100: #ede9fe;
-  --color-violet-200: #ddd6fe;
-  --color-violet-400: #a78bfa;
-  --color-violet-500: #8b5cf6;
-  --color-violet-600: #7c3aed;
-  --color-violet-700: #6d28d9;
+  /*
+   * Neutral scale tuned for a dark UI.
+   * ink-900 is the lightest (cream heading text), ink-100 the darkest raised tone,
+   * ink-950 is the page background (used for dark text on clay buttons).
+   */
+  --color-ink-950: #171210;
+  --color-ink-900: #f3ece4;
+  --color-ink-800: #e4dad0;
+  --color-ink-700: #cdbfb4;
+  --color-ink-600: #b3a497;
+  --color-ink-500: #8f8178;
+  --color-ink-400: #6b5f57;
+  --color-ink-300: #4a3f39;
+  --color-ink-200: #332a25;
+  --color-ink-100: #28201c;
+  --color-surface: #1f1916;
+  --color-surface-raised: #28201c;
 
-  /* Neutrals with a faint purple tint */
-  --color-ink-900: #1c1526;
-  --color-ink-800: #2d2440;
-  --color-ink-700: #3f3550;
-  --color-ink-600: #5b5070;
-  --color-ink-500: #7a6f8d;
-  --color-ink-300: #cfc7dc;
-  --color-ink-200: #e6e0ee;
-  --color-ink-100: #f1edf6;
-  --color-surface: #ffffff;
+  /* Cream footer */
+  --color-cream-50: #f3efe8;
+  --color-cream-100: #e9e3da;
+  --color-cream-300: #d9d2c8;
+  --color-cream-600: #6f655c;
+  --color-cream-800: #3a3129;
+  --color-cream-900: #1a1412;
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
 
-  --shadow-card: 0 1px 2px rgb(28 21 38 / 0.04), 0 8px 24px -12px rgb(124 58 237 / 0.18);
-  --shadow-card-hover: 0 2px 4px rgb(28 21 38 / 0.05), 0 18px 40px -16px rgb(219 39 119 / 0.28);
+  --shadow-card: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 12px 32px -16px rgb(0 0 0 / 0.7);
+  --shadow-card-hover:
+    0 1px 0 rgb(255 255 255 / 0.06) inset, 0 24px 48px -20px rgb(0 0 0 / 0.8),
+    0 0 0 1px rgb(217 130 95 / 0.25);
 }
 
 html {
@@ -64,20 +76,51 @@ body {
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-violet-500);
+  outline: 3px solid var(--color-brand-400);
   outline-offset: 3px;
   border-radius: 0.5rem;
 }
 
+::selection {
+  background: rgb(217 130 95 / 0.35);
+  color: var(--foreground);
+}
+
 @utility bg-brand-gradient {
-  background-image: linear-gradient(135deg, var(--color-brand-500) 0%, var(--color-violet-600) 100%);
+  background-image: linear-gradient(135deg, var(--color-brand-400) 0%, var(--color-brand-700) 100%);
 }
 
 @utility text-brand-gradient {
-  background-image: linear-gradient(135deg, var(--color-brand-600) 0%, var(--color-violet-600) 100%);
+  background-image: linear-gradient(135deg, var(--color-brand-300) 0%, var(--color-brand-600) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* Radial clay glow used behind the hero copy and the final CTA card. */
+@utility bg-hero-glow {
+  background-image:
+    radial-gradient(ellipse 70% 60% at 30% 20%, rgb(217 130 95 / 0.22), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 85% 90%, rgb(185 88 59 / 0.16), transparent 70%);
+}
+
+@utility bg-cta-glow {
+  background-image:
+    radial-gradient(ellipse 80% 90% at 50% 110%, rgb(217 130 95 / 0.32), transparent 65%),
+    linear-gradient(180deg, var(--color-surface) 0%, #1a1310 100%);
+}
+
+/* Serif display face for headings and the footer wordmark. */
+@utility font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+}
+
+/* Italic clay accent word inside a display heading, e.g. "all across <em>America</em>". */
+@utility text-accent-italic {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-brand-400);
 }
 
 /* Native <details> marker cleanup for the FAQ accordion */
