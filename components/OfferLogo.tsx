@@ -24,7 +24,7 @@ export function OfferLogo({ offer, size = 56, className = "" }: OfferLogoProps) 
         alt={`${offer.name} logo`}
         width={size}
         height={size}
-        className={`rounded-2xl object-contain ${className}`}
+        className={`rounded-full object-contain ${className}`}
       />
     );
   }
@@ -37,7 +37,7 @@ export function OfferLogo({ offer, size = 56, className = "" }: OfferLogoProps) 
       role="img"
       aria-label={`${offer.name} logo placeholder`}
       style={{ width: size, height: size, fontSize: size * 0.42 }}
-      className={`flex shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${gradient} font-display font-semibold text-ink-900 shadow-sm ring-1 ring-white/10 ${className}`}
+      className={`flex shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${gradient} font-display font-semibold text-ink-950 ring-1 ring-brand-400/25 ${className}`}
     >
       {initial}
     </div>

@@ -9,6 +9,14 @@ import { CloseIcon, MenuIcon } from "@/components/Icons";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Close the mobile menu on Escape and lock scroll while it's open.
   useEffect(() => {
@@ -28,17 +36,23 @@ export function Header() {
   const close = () => setOpen(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/8 bg-background/80 backdrop-blur-md">
+    <header
+      className={`sticky top-0 z-40 transition-[background-color,border-color,backdrop-filter] duration-300 ${
+        scrolled || open
+          ? "border-b border-brand-400/15 bg-background/70 backdrop-blur-xl"
+          : "border-b border-transparent bg-transparent"
+      }`}
+    >
       <Container>
-        <nav aria-label="Primary" className="flex h-16 items-center justify-between gap-4 sm:h-20">
+        <nav aria-label="Primary" className="flex h-[4.25rem] items-center justify-between gap-4 sm:h-20">
           <Logo onClick={close} />
 
-          <ul className="hidden items-center gap-1 lg:flex">
+          <ul className="hidden items-center gap-0.5 lg:flex">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium text-ink-600 transition-colors hover:bg-white/5 hover:text-ink-900"
+                  className="whitespace-nowrap rounded-full px-3.5 py-2 text-[0.78rem] font-medium tracking-[0.04em] text-ink-500 transition-colors hover:text-ink-900"
                 >
                   {link.label}
                 </Link>
@@ -49,7 +63,7 @@ export function Header() {
           <div className="flex items-center gap-2">
             <Link
               href="/#offers"
-              className="hidden whitespace-nowrap rounded-full bg-brand-500 px-5 py-2.5 text-sm font-semibold text-ink-950 shadow-sm transition-colors hover:bg-brand-400 sm:inline-flex"
+              className="btn-clay hidden whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold hover:btn-clay-hover sm:inline-flex"
             >
               Explore Offers
             </Link>
@@ -71,26 +85,26 @@ export function Header() {
       <div
         id="mobile-menu"
         hidden={!open}
-        className="border-t border-white/8 bg-background lg:hidden"
+        className="border-t border-brand-400/15 bg-background/95 backdrop-blur-xl lg:hidden"
       >
-        <Container className="py-4">
+        <Container className="py-5">
           <ul className="flex flex-col gap-1">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
                   onClick={close}
-                  className="block rounded-xl px-4 py-3 text-base font-medium text-ink-800 transition-colors hover:bg-white/5"
+                  className="block rounded-xl px-4 py-3 text-base font-medium tracking-wide text-ink-800 transition-colors hover:bg-white/5"
                 >
                   {link.label}
                 </Link>
               </li>
             ))}
-            <li className="pt-2">
+            <li className="pt-3">
               <Link
                 href="/#offers"
                 onClick={close}
-                className="flex items-center justify-center rounded-full bg-brand-500 px-5 py-3 text-base font-semibold text-ink-950 shadow-sm"
+                className="btn-clay flex items-center justify-center rounded-full px-5 py-3 text-base font-semibold"
               >
                 Explore Offers
               </Link>

@@ -15,7 +15,7 @@ const icons: Record<Feature["icon"], typeof CompassIcon> = {
  * Bento layout, in order of `features`:
  *  0 - tall text tile (spans two rows)
  *  1 - photo tile
- *  2 - wide text tile (spans two columns) with a photo tile beside it
+ *  2 - wide text tile (spans two columns)
  *  3 - photo tile
  */
 const layout: Array<{ className: string; image?: { src: string; alt: string } }> = [
@@ -39,7 +39,7 @@ const layout: Array<{ className: string; image?: { src: string; alt: string } }>
 
 export function Features() {
   return (
-    <section aria-labelledby="features-heading" className="py-14 sm:py-20">
+    <section aria-labelledby="features-heading" className="py-16 sm:py-24">
       <Container>
         <SectionHeading
           id="features-heading"
@@ -56,7 +56,7 @@ export function Features() {
 
         <ul
           role="list"
-          className="mt-10 grid gap-4 md:grid-flow-dense md:grid-cols-3 md:auto-rows-[15rem]"
+          className="mt-12 grid gap-4 md:grid-flow-dense md:grid-cols-3 md:auto-rows-[15.5rem]"
         >
           {features.map((feature, index) => {
             const Icon = icons[feature.icon];
@@ -66,7 +66,7 @@ export function Features() {
             return (
               <li
                 key={feature.title}
-                className={`group relative flex overflow-hidden rounded-2xl border border-white/8 bg-surface shadow-card transition-colors hover:border-brand-400/40 ${
+                className={`group relative flex overflow-hidden rounded-[1.35rem] border border-hairline bg-surface shadow-card transition-[border-color,box-shadow] duration-500 hover:border-brand-400/40 hover:shadow-card-hover ${
                   slot.image ? "min-h-[16rem]" : ""
                 } ${slot.className}`}
               >
@@ -77,32 +77,32 @@ export function Features() {
                       alt={slot.image.alt}
                       fill
                       sizes="(min-width: 768px) 360px, 100vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div
                       aria-hidden="true"
-                      className="absolute inset-0 bg-gradient-to-t from-ink-950/95 via-ink-950/40 to-ink-950/10"
+                      className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/45 to-ink-950/10"
                     />
                   </>
                 ) : null}
 
                 <div
-                  className={`relative flex flex-1 flex-col p-6 sm:p-7 ${
+                  className={`relative flex flex-1 flex-col p-7 sm:p-8 ${
                     slot.image ? "justify-end" : isTall ? "justify-between" : "justify-center"
                   }`}
                 >
                   <span
-                    className={`flex h-11 w-11 items-center justify-center rounded-full border border-brand-400/50 text-brand-300 ${
-                      slot.image ? "bg-ink-950/60 backdrop-blur" : "bg-brand-500/10"
+                    className={`flex h-11 w-11 items-center justify-center rounded-full border border-brand-400/40 text-brand-300 ${
+                      slot.image ? "bg-ink-950/55 backdrop-blur-md" : "bg-brand-500/10"
                     }`}
                   >
                     <Icon className="h-5 w-5" />
                   </span>
-                  <div className={isTall ? "" : "mt-5"}>
-                    <h3 className="font-display text-xl font-medium tracking-tight text-ink-900 sm:text-2xl">
+                  <div className={isTall ? "" : "mt-6"}>
+                    <h3 className="font-display text-xl font-medium tracking-tight text-ink-900 sm:text-[1.65rem]">
                       {feature.title}
                     </h3>
-                    <p className="mt-2 max-w-md text-sm leading-6 text-ink-600">
+                    <p className="mt-2.5 max-w-md text-sm leading-7 text-ink-600">
                       {feature.description}
                     </p>
                   </div>

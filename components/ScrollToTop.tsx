@@ -19,7 +19,7 @@ export function ScrollToTop() {
       type="button"
       aria-label="Back to top"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="fixed right-4 bottom-4 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-brand-500 text-ink-950 shadow-lg transition-colors hover:bg-brand-400"
+      className="fixed right-5 bottom-5 z-40 flex h-11 w-11 items-center justify-center rounded-full btn-clay transition-transform duration-300 hover:-translate-y-0.5 hover:btn-clay-hover"
     >
       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
         <path d="M6 14l6-6 6 6" strokeLinecap="round" strokeLinejoin="round" />

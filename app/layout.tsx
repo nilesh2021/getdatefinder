@@ -18,7 +18,7 @@ const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
   style: ["normal", "italic"],
-  axes: ["opsz", "SOFT"],
+  axes: ["opsz", "SOFT", "WONK"],
 });
 
 const ogImage = {

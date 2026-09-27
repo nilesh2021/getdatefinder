@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #171210;
-  --foreground: #f3ece4;
+  --background: #120e0c;
+  --foreground: #f6efe7;
   color-scheme: dark;
 }
 
@@ -10,12 +10,12 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* Brand palette: warm clay / terracotta */
+  /* Brand palette: warm clay / terracotta with a metallic highlight */
   --color-brand-50: #fbf1ec;
   --color-brand-100: #f7e1d6;
   --color-brand-200: #f1c9b6;
-  --color-brand-300: #e9a486;
-  --color-brand-400: #e08a63;
+  --color-brand-300: #edb08c;
+  --color-brand-400: #e49a70;
   --color-brand-500: #d9825f;
   --color-brand-600: #c9694a;
   --color-brand-700: #b9583b;
@@ -26,21 +26,21 @@
    * ink-900 is the lightest (cream heading text), ink-100 the darkest raised tone,
    * ink-950 is the page background (used for dark text on clay buttons).
    */
-  --color-ink-950: #171210;
-  --color-ink-900: #f3ece4;
-  --color-ink-800: #e4dad0;
-  --color-ink-700: #cdbfb4;
+  --color-ink-950: #120e0c;
+  --color-ink-900: #f6efe7;
+  --color-ink-800: #e8ddd2;
+  --color-ink-700: #cfc0b3;
   --color-ink-600: #b3a497;
   --color-ink-500: #8f8178;
   --color-ink-400: #6b5f57;
   --color-ink-300: #4a3f39;
-  --color-ink-200: #332a25;
-  --color-ink-100: #28201c;
-  --color-surface: #1f1916;
-  --color-surface-raised: #28201c;
+  --color-ink-200: #2c241f;
+  --color-ink-100: #221c18;
+  --color-surface: #1a1512;
+  --color-surface-raised: #241e1a;
 
   /* Cream footer */
-  --color-cream-50: #f3efe8;
+  --color-cream-50: #f4f0e9;
   --color-cream-100: #e9e3da;
   --color-cream-300: #d9d2c8;
   --color-cream-600: #6f655c;
@@ -51,10 +51,14 @@
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
 
-  --shadow-card: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 12px 32px -16px rgb(0 0 0 / 0.7);
+  --shadow-card:
+    0 1px 0 rgb(255 248 240 / 0.06) inset,
+    0 18px 40px -24px rgb(0 0 0 / 0.85);
   --shadow-card-hover:
-    0 1px 0 rgb(255 255 255 / 0.06) inset, 0 24px 48px -20px rgb(0 0 0 / 0.8),
-    0 0 0 1px rgb(217 130 95 / 0.25);
+    0 1px 0 rgb(255 248 240 / 0.1) inset,
+    0 28px 56px -20px rgb(0 0 0 / 0.9),
+    0 0 0 1px rgb(228 154 112 / 0.35),
+    0 0 40px -12px rgb(217 130 95 / 0.35);
 }
 
 html {
@@ -66,6 +70,14 @@ html {
   html {
     scroll-behavior: auto;
   }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 body {
@@ -75,10 +87,33 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Film grain + vignette — the “printed editorial” layer. */
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.038;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+body::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, transparent 40%, rgb(0 0 0 / 0.28) 100%),
+    radial-gradient(ellipse 50% 40% at 100% 100%, rgb(185 88 59 / 0.08), transparent 60%);
+}
+
 :focus-visible {
-  outline: 3px solid var(--color-brand-400);
+  outline: 2px solid var(--color-brand-400);
   outline-offset: 3px;
-  border-radius: 0.5rem;
+  border-radius: 999px;
 }
 
 ::selection {
@@ -87,11 +122,11 @@ body {
 }
 
 @utility bg-brand-gradient {
-  background-image: linear-gradient(135deg, var(--color-brand-400) 0%, var(--color-brand-700) 100%);
+  background-image: linear-gradient(160deg, var(--color-brand-300) 0%, var(--color-brand-500) 45%, var(--color-brand-700) 100%);
 }
 
 @utility text-brand-gradient {
-  background-image: linear-gradient(135deg, var(--color-brand-300) 0%, var(--color-brand-600) 100%);
+  background-image: linear-gradient(135deg, var(--color-brand-200) 0%, var(--color-brand-500) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -100,27 +135,53 @@ body {
 /* Radial clay glow used behind the hero copy and the final CTA card. */
 @utility bg-hero-glow {
   background-image:
-    radial-gradient(ellipse 70% 60% at 30% 20%, rgb(217 130 95 / 0.22), transparent 70%),
-    radial-gradient(ellipse 60% 50% at 85% 90%, rgb(185 88 59 / 0.16), transparent 70%);
+    radial-gradient(ellipse 55% 50% at 18% 8%, rgb(228 154 112 / 0.28), transparent 62%),
+    radial-gradient(ellipse 45% 40% at 92% 18%, rgb(185 88 59 / 0.14), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 70% 100%, rgb(217 130 95 / 0.08), transparent 70%);
 }
 
 @utility bg-cta-glow {
   background-image:
-    radial-gradient(ellipse 80% 90% at 50% 110%, rgb(217 130 95 / 0.32), transparent 65%),
-    linear-gradient(180deg, var(--color-surface) 0%, #1a1310 100%);
+    radial-gradient(ellipse 90% 80% at 50% 120%, rgb(217 130 95 / 0.38), transparent 62%),
+    radial-gradient(ellipse 40% 30% at 15% 0%, rgb(228 154 112 / 0.12), transparent 50%),
+    linear-gradient(180deg, #1c1714 0%, #120e0c 100%);
 }
 
 /* Serif display face for headings and the footer wordmark. */
 @utility font-display {
   font-family: var(--font-display);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.03em;
+  font-variation-settings: "opsz" 144, "SOFT" 20, "WONK" 1;
 }
 
-/* Italic clay accent word inside a display heading, e.g. "all across <em>America</em>". */
+/* Italic clay accent word inside a display heading. */
 @utility text-accent-italic {
   font-style: italic;
-  font-weight: 400;
+  font-weight: 380;
   color: var(--color-brand-400);
+  font-variation-settings: "opsz" 144, "SOFT" 60, "WONK" 1;
+}
+
+/* Hairline gold border used on cards and frames. */
+@utility border-hairline {
+  border-color: rgb(228 154 112 / 0.18);
+}
+
+/* Primary clay CTA with an inner highlight, like a polished metal pill. */
+@utility btn-clay {
+  background-image:
+    linear-gradient(180deg, rgb(255 255 255 / 0.18) 0%, transparent 42%),
+    linear-gradient(160deg, var(--color-brand-300) 0%, var(--color-brand-500) 48%, var(--color-brand-700) 100%);
+  color: var(--color-ink-950);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.28) inset,
+    0 12px 28px -10px rgb(217 130 95 / 0.55);
+}
+
+@utility btn-clay-hover {
+  background-image:
+    linear-gradient(180deg, rgb(255 255 255 / 0.24) 0%, transparent 42%),
+    linear-gradient(160deg, var(--color-brand-200) 0%, var(--color-brand-400) 48%, var(--color-brand-600) 100%);
 }
 
 /* Native <details> marker cleanup for the FAQ accordion */

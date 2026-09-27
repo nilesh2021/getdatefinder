@@ -17,8 +17,10 @@ export default function NotFound() {
       <main id="main" className="flex flex-1 items-center py-24">
         <Container>
           <div className="mx-auto max-w-xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-400">
+            <p className="inline-flex items-center gap-3 text-[0.68rem] font-medium uppercase tracking-[0.32em] text-brand-400">
+              <span aria-hidden="true" className="h-px w-8 bg-brand-400/50" />
               404
+              <span aria-hidden="true" className="h-px w-8 bg-brand-400/50" />
             </p>
             <h1 className="mt-4 font-display text-4xl font-medium leading-[1.05] tracking-tight text-ink-900 sm:text-5xl">
               That page <span className="text-accent-italic">does not exist</span>
@@ -29,7 +31,7 @@ export default function NotFound() {
             </p>
             <Link
               href="/#offers"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-500 px-7 py-3.5 text-base font-semibold text-ink-950 shadow-md transition-colors hover:bg-brand-400"
+              className="btn-clay mt-8 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-base font-semibold transition-transform duration-300 hover:-translate-y-0.5 hover:btn-clay-hover"
             >
               Explore Offers
               <ArrowRightIcon className="h-4 w-4" />
