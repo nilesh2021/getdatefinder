@@ -188,3 +188,16 @@ body::after {
 summary::-webkit-details-marker {
   display: none;
 }
+
+@keyframes usa-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.usa-marquee {
+  animation: usa-marquee 36s linear infinite;
+}
