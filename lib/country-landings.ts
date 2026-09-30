@@ -17,6 +17,8 @@ export type CountryLanding = {
   slug: string;
   country: string;
   countryName: string;
+  /** ISO 3166-1 alpha-2 for flag icons (e.g. HR for Croatia). */
+  isoCode: string;
   offerIds: readonly string[];
   title: string;
   description: string;
@@ -39,10 +41,74 @@ const sharedIntro =
 const sharedFaqDescription = "Common questions before you visit an external platform.";
 const sharedAvailabilityNote = "Visit Offer opens the external platform in a new tab.";
 
+function standardCountryFaqs(placeName: string, availabilityPhrase: string): CountryFaq[] {
+  return [
+    {
+      question: `Which free adult dating offers are shown for ${placeName}?`,
+      answer:
+        `We list free adult dating offers intended for adults in ${placeName}. You can compare three adult dating platforms on one page, review features, and open the external dating site that suits you without registering here.`,
+    },
+    {
+      question: "Can I compare adult dating platforms before I visit?",
+      answer:
+        "Yes. The offer section lets you compare three adult dating platforms side by side with short copy and feature chips, so you can pick a dating offer before leaving this comparison site.",
+    },
+    {
+      question: "How do visit links to external dating sites work?",
+      answer:
+        "Visit Offer opens the chosen adult dating platform in a new browser tab. You continue on that external dating website; this page does not host profiles or chats.",
+    },
+    {
+      question: `Is availability the same in every part of ${placeName}?`,
+      answer:
+        `Adult dating offers are listed for ${availabilityPhrase}, but platforms may limit access by region. Confirm eligibility on the external dating site after you click through from this comparison page.`,
+    },
+    {
+      question: "Do I pay to browse, and who are these offers for?",
+      answer:
+        "Browsing free adult dating offers on this page is free. Membership fees are set by external platforms. Only adults 18+ may use the linked third-party adult dating websites.",
+    },
+  ];
+}
+
+function buildCountryLanding(config: {
+  slug: string;
+  country: string;
+  countryName: string;
+  isoCode: string;
+  title: string;
+  description: string;
+  h1Accent: string;
+  heroCuratedFor: string;
+  faqTitleAccent: string;
+  ctaFromLabel: string;
+  faqPlaceName: string;
+  faqAvailabilityPhrase: string;
+}): CountryLanding {
+  return {
+    slug: config.slug,
+    country: config.country,
+    countryName: config.countryName,
+    isoCode: config.isoCode,
+    offerIds: defaultOfferIds,
+    title: config.title,
+    description: config.description,
+    intro: sharedIntro,
+    h1Accent: config.h1Accent,
+    heroCuratedFor: config.heroCuratedFor,
+    faqTitleAccent: config.faqTitleAccent,
+    faqDescription: sharedFaqDescription,
+    availabilityNote: sharedAvailabilityNote,
+    ctaFromLabel: config.ctaFromLabel,
+    faqs: standardCountryFaqs(config.faqPlaceName, config.faqAvailabilityPhrase),
+  };
+}
+
 export const usaLanding: CountryLanding = {
   slug: "free-adult-dating-offers-in-usa",
   country: "USA",
   countryName: "United States",
+  isoCode: "US",
   offerIds: defaultOfferIds,
   title: "Free Adult Dating Offers in USA",
   description: "Adult dating offer comparison for the United States. 18+ only.",
@@ -86,6 +152,7 @@ export const australiaLanding: CountryLanding = {
   slug: "free-adult-dating-offers-in-australia",
   country: "Australia",
   countryName: "Australia",
+  isoCode: "AU",
   offerIds: defaultOfferIds,
   title: "Free Adult Dating Offers in Australia",
   description: "Adult dating offer comparison for Australia. 18+ only.",
@@ -129,6 +196,7 @@ export const austriaLanding: CountryLanding = {
   slug: "free-adult-dating-offers-in-austria",
   country: "Austria",
   countryName: "Austria",
+  isoCode: "AT",
   offerIds: defaultOfferIds,
   title: "Free Adult Dating Offers in Austria",
   description: "Adult dating offer comparison for Austria. 18+ only.",
@@ -172,6 +240,7 @@ export const belgiumLanding: CountryLanding = {
   slug: "free-adult-dating-offers-in-belgium",
   country: "Belgium",
   countryName: "Belgium",
+  isoCode: "BE",
   offerIds: defaultOfferIds,
   title: "Free Adult Dating Offers in Belgium",
   description: "Adult dating offer comparison for Belgium. 18+ only.",
@@ -215,6 +284,7 @@ export const bulgariaLanding: CountryLanding = {
   slug: "free-adult-dating-offers-in-bulgaria",
   country: "Bulgaria",
   countryName: "Bulgaria",
+  isoCode: "BG",
   offerIds: defaultOfferIds,
   title: "Free Adult Dating Offers in Bulgaria",
   description: "Adult dating offer comparison for Bulgaria. 18+ only.",
@@ -258,6 +328,7 @@ export const canadaLanding: CountryLanding = {
   slug: "free-adult-dating-offers-in-canada",
   country: "Canada",
   countryName: "Canada",
+  isoCode: "CA",
   offerIds: defaultOfferIds,
   title: "Free Adult Dating Offers in Canada",
   description: "Adult dating offer comparison for Canada. 18+ only.",
@@ -297,53 +368,11 @@ export const canadaLanding: CountryLanding = {
   ],
 };
 
-export const chileLanding: CountryLanding = {
-  slug: "free-adult-dating-offers-in-chile",
-  country: "Chile",
-  countryName: "Chile",
-  offerIds: defaultOfferIds,
-  title: "Free Adult Dating Offers in Chile",
-  description: "Adult dating offer comparison for Chile. 18+ only.",
-  intro: sharedIntro,
-  h1Accent: "in Chile",
-  heroCuratedFor: "Curated for Chilean adults",
-  faqTitleAccent: "Chilean offers",
-  faqDescription: sharedFaqDescription,
-  availabilityNote: sharedAvailabilityNote,
-  ctaFromLabel: "from Chile",
-  faqs: [
-    {
-      question: "What free adult dating offers are listed for Chile?",
-      answer:
-        "This page shows free adult dating offers for adults in Chile. Compare three adult dating platforms, read summaries and features, and visit the external dating site you pick—no registration on this comparison page.",
-    },
-    {
-      question: "How can I compare adult dating platforms before visiting?",
-      answer:
-        "Offer cards let you compare three adult dating platforms side by side with descriptions and feature highlights, then open your chosen dating offer in a new tab.",
-    },
-    {
-      question: "Does Visit Offer open the dating site in a new tab?",
-      answer:
-        "Yes. Visit Offer opens the external adult dating platform in a new tab. You continue on that third-party dating website, not on this comparison site.",
-    },
-    {
-      question: "Are adult dating offers available everywhere in Chile?",
-      answer:
-        "Listings are intended for adults in Chile. Platform coverage varies; confirm on the external dating site when you visit from your location.",
-    },
-    {
-      question: "Is comparing offers free, and what age is required?",
-      answer:
-        "Comparing free adult dating offers here is free. External platforms may charge for membership. You must be 18+ to use linked adult dating services.",
-    },
-  ],
-};
-
 export const croatiaLanding: CountryLanding = {
   slug: "free-adult-dating-offers-in-croatia",
   country: "Croatia",
   countryName: "Croatia",
+  isoCode: "HR",
   offerIds: defaultOfferIds,
   title: "Free Adult Dating Offers in Croatia",
   description: "Adult dating offer comparison for Croatia. 18+ only.",
@@ -387,6 +416,7 @@ export const cyprusLanding: CountryLanding = {
   slug: "free-adult-dating-offers-in-cyprus",
   country: "Cyprus",
   countryName: "Cyprus",
+  isoCode: "CY",
   offerIds: defaultOfferIds,
   title: "Free Adult Dating Offers in Cyprus",
   description: "Adult dating offer comparison for Cyprus. 18+ only.",
@@ -430,6 +460,7 @@ export const czechRepublicLanding: CountryLanding = {
   slug: "free-adult-dating-offers-in-czech-republic",
   country: "Czech Republic",
   countryName: "Czech Republic",
+  isoCode: "CZ",
   offerIds: defaultOfferIds,
   title: "Free Adult Dating Offers in Czech Republic",
   description: "Adult dating offer comparison for the Czech Republic. 18+ only.",
@@ -469,6 +500,171 @@ export const czechRepublicLanding: CountryLanding = {
   ],
 };
 
+export const denmarkLanding = buildCountryLanding({
+  slug: "free-adult-dating-offers-in-denmark",
+  country: "Denmark",
+  countryName: "Denmark",
+  isoCode: "DK",
+  title: "Free Adult Dating Offers in Denmark",
+  description: "Adult dating offer comparison for Denmark. 18+ only.",
+  h1Accent: "in Denmark",
+  heroCuratedFor: "Curated for Danish adults",
+  faqTitleAccent: "Danish offers",
+  ctaFromLabel: "from Denmark",
+  faqPlaceName: "Denmark",
+  faqAvailabilityPhrase: "Denmark",
+});
+
+export const estoniaLanding = buildCountryLanding({
+  slug: "free-adult-dating-offers-in-estonia",
+  country: "Estonia",
+  countryName: "Estonia",
+  isoCode: "EE",
+  title: "Free Adult Dating Offers in Estonia",
+  description: "Adult dating offer comparison for Estonia. 18+ only.",
+  h1Accent: "in Estonia",
+  heroCuratedFor: "Curated for Estonian adults",
+  faqTitleAccent: "Estonian offers",
+  ctaFromLabel: "from Estonia",
+  faqPlaceName: "Estonia",
+  faqAvailabilityPhrase: "Estonia",
+});
+
+export const finlandLanding = buildCountryLanding({
+  slug: "free-adult-dating-offers-in-finland",
+  country: "Finland",
+  countryName: "Finland",
+  isoCode: "FI",
+  title: "Free Adult Dating Offers in Finland",
+  description: "Adult dating offer comparison for Finland. 18+ only.",
+  h1Accent: "in Finland",
+  heroCuratedFor: "Curated for Finnish adults",
+  faqTitleAccent: "Finnish offers",
+  ctaFromLabel: "from Finland",
+  faqPlaceName: "Finland",
+  faqAvailabilityPhrase: "Finland",
+});
+
+export const franceLanding = buildCountryLanding({
+  slug: "free-adult-dating-offers-in-france",
+  country: "France",
+  countryName: "France",
+  isoCode: "FR",
+  title: "Free Adult Dating Offers in France",
+  description: "Adult dating offer comparison for France. 18+ only.",
+  h1Accent: "in France",
+  heroCuratedFor: "Curated for French adults",
+  faqTitleAccent: "French offers",
+  ctaFromLabel: "from France",
+  faqPlaceName: "France",
+  faqAvailabilityPhrase: "France",
+});
+
+export const germanyLanding = buildCountryLanding({
+  slug: "free-adult-dating-offers-in-germany",
+  country: "Germany",
+  countryName: "Germany",
+  isoCode: "DE",
+  title: "Free Adult Dating Offers in Germany",
+  description: "Adult dating offer comparison for Germany. 18+ only.",
+  h1Accent: "in Germany",
+  heroCuratedFor: "Curated for German adults",
+  faqTitleAccent: "German offers",
+  ctaFromLabel: "from Germany",
+  faqPlaceName: "Germany",
+  faqAvailabilityPhrase: "Germany",
+});
+
+export const greeceLanding = buildCountryLanding({
+  slug: "free-adult-dating-offers-in-greece",
+  country: "Greece",
+  countryName: "Greece",
+  isoCode: "GR",
+  title: "Free Adult Dating Offers in Greece",
+  description: "Adult dating offer comparison for Greece. 18+ only.",
+  h1Accent: "in Greece",
+  heroCuratedFor: "Curated for Greek adults",
+  faqTitleAccent: "Greek offers",
+  ctaFromLabel: "from Greece",
+  faqPlaceName: "Greece",
+  faqAvailabilityPhrase: "Greece",
+});
+
+export const hungaryLanding = buildCountryLanding({
+  slug: "free-adult-dating-offers-in-hungary",
+  country: "Hungary",
+  countryName: "Hungary",
+  isoCode: "HU",
+  title: "Free Adult Dating Offers in Hungary",
+  description: "Adult dating offer comparison for Hungary. 18+ only.",
+  h1Accent: "in Hungary",
+  heroCuratedFor: "Curated for Hungarian adults",
+  faqTitleAccent: "Hungarian offers",
+  ctaFromLabel: "from Hungary",
+  faqPlaceName: "Hungary",
+  faqAvailabilityPhrase: "Hungary",
+});
+
+export const irelandLanding = buildCountryLanding({
+  slug: "free-adult-dating-offers-in-ireland",
+  country: "Ireland",
+  countryName: "Ireland",
+  isoCode: "IE",
+  title: "Free Adult Dating Offers in Ireland",
+  description: "Adult dating offer comparison for Ireland. 18+ only.",
+  h1Accent: "in Ireland",
+  heroCuratedFor: "Curated for Irish adults",
+  faqTitleAccent: "Irish offers",
+  ctaFromLabel: "from Ireland",
+  faqPlaceName: "Ireland",
+  faqAvailabilityPhrase: "Ireland",
+});
+
+export const italyLanding = buildCountryLanding({
+  slug: "free-adult-dating-offers-in-italy",
+  country: "Italy",
+  countryName: "Italy",
+  isoCode: "IT",
+  title: "Free Adult Dating Offers in Italy",
+  description: "Adult dating offer comparison for Italy. 18+ only.",
+  h1Accent: "in Italy",
+  heroCuratedFor: "Curated for Italian adults",
+  faqTitleAccent: "Italian offers",
+  ctaFromLabel: "from Italy",
+  faqPlaceName: "Italy",
+  faqAvailabilityPhrase: "Italy",
+});
+
+export const netherlandsLanding = buildCountryLanding({
+  slug: "free-adult-dating-offers-in-netherlands",
+  country: "Netherlands",
+  countryName: "Netherlands",
+  isoCode: "NL",
+  title: "Free Adult Dating Offers in Netherlands",
+  description: "Adult dating offer comparison for the Netherlands. 18+ only.",
+  h1Accent: "in the Netherlands",
+  heroCuratedFor: "Curated for Dutch adults",
+  faqTitleAccent: "Dutch offers",
+  ctaFromLabel: "from the Netherlands",
+  faqPlaceName: "the Netherlands",
+  faqAvailabilityPhrase: "the Netherlands",
+});
+
+export const spainLanding = buildCountryLanding({
+  slug: "free-adult-dating-offers-in-spain",
+  country: "Spain",
+  countryName: "Spain",
+  isoCode: "ES",
+  title: "Free Adult Dating Offers in Spain",
+  description: "Adult dating offer comparison for Spain. 18+ only.",
+  h1Accent: "in Spain",
+  heroCuratedFor: "Curated for Spanish adults",
+  faqTitleAccent: "Spanish offers",
+  ctaFromLabel: "from Spain",
+  faqPlaceName: "Spain",
+  faqAvailabilityPhrase: "Spain",
+});
+
 export const countryLandings: CountryLanding[] = [
   usaLanding,
   australiaLanding,
@@ -476,11 +672,58 @@ export const countryLandings: CountryLanding[] = [
   belgiumLanding,
   bulgariaLanding,
   canadaLanding,
-  chileLanding,
   croatiaLanding,
   cyprusLanding,
   czechRepublicLanding,
+  denmarkLanding,
+  estoniaLanding,
+  finlandLanding,
+  franceLanding,
+  germanyLanding,
+  greeceLanding,
+  hungaryLanding,
+  irelandLanding,
+  italyLanding,
+  netherlandsLanding,
+  spainLanding,
 ];
+
+export type CountryLetterGroup = {
+  letter: string;
+  count: number;
+  items: CountryLanding[];
+};
+
+export function groupCountryLandingsByLetter(landings: CountryLanding[]): CountryLetterGroup[] {
+  const sorted = [...landings].sort((a, b) =>
+    a.countryName.localeCompare(b.countryName, "en", { sensitivity: "base" }),
+  );
+
+  const byLetter = new Map<string, CountryLanding[]>();
+  for (const landing of sorted) {
+    const letter = landing.countryName.charAt(0).toUpperCase();
+    const bucket = byLetter.get(letter);
+    if (bucket) {
+      bucket.push(landing);
+    } else {
+      byLetter.set(letter, [landing]);
+    }
+  }
+
+  return [...byLetter.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([letter, items]) => ({
+      letter,
+      count: items.length,
+      items,
+    }));
+}
+
+const FLAG_ICON_BASE = "https://purecatamphetamine.github.io/country-flag-icons/3x2";
+
+export function countryFlagSrc(isoCode: string): string {
+  return `${FLAG_ICON_BASE}/${isoCode}.svg`;
+}
 
 export function getCountryLanding(slug: string): CountryLanding | undefined {
   return countryLandings.find((landing) => landing.slug === slug);

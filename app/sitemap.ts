@@ -12,6 +12,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    {
+      url: `${siteConfig.url}/countries`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
     ...countryLandings.map((landing) => ({
       url: `${siteConfig.url}/${landing.slug}`,
       lastModified,
