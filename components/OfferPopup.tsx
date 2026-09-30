@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import type { PublicOffer } from "@/lib/offers";
 import { OfferLogo } from "@/components/OfferLogo";
@@ -70,7 +71,7 @@ export function OfferPopup({ offer }: OfferPopupProps) {
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="relative z-10 flex max-h-[min(90vh,640px)] w-full max-w-md flex-col overflow-hidden rounded-[1.5rem] border border-hairline bg-surface shadow-card-hover"
+        className="relative z-10 flex max-h-[min(90vh,640px)] w-full max-w-md flex-col overflow-hidden rounded-[1.5rem] border border-brand-400/30 bg-surface shadow-card-hover"
       >
         <button
           ref={closeRef}
@@ -92,14 +93,14 @@ export function OfferPopup({ offer }: OfferPopupProps) {
             sizes="(min-width: 640px) 448px, 100vw"
             className="object-cover"
           />
-          <span className="absolute top-3 left-3 rounded-full border border-white/15 bg-ink-950/55 px-3 py-1 text-[0.65rem] font-medium tracking-[0.16em] text-ink-900 uppercase backdrop-blur-md">
-            {offer.category}
+          <span className="absolute top-3 left-3 rounded-full border border-brand-300/40 bg-brand-500 px-3 py-1 text-[0.65rem] font-bold tracking-[0.16em] text-ink-950 uppercase">
+            Featured · 18+
           </span>
         </div>
 
         <div className="overflow-y-auto p-5">
-          <p className="text-[0.68rem] font-medium tracking-[0.28em] text-brand-400 uppercase">
-            Featured offer
+          <p className="text-[0.68rem] font-bold tracking-[0.28em] text-brand-400 uppercase">
+            Still here? Grab this offer
           </p>
           <div className="mt-2 flex items-center gap-3">
             <OfferLogo offer={offer} size={40} />
@@ -118,16 +119,32 @@ export function OfferPopup({ offer }: OfferPopupProps) {
               </li>
             ))}
           </ul>
-          <a
-            href={`/go/${offer.id}`}
-            target="_blank"
-            rel="noopener noreferrer nofollow sponsored"
-            className="btn-clay mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-transform duration-300 hover:btn-clay-hover"
-          >
-            Visit Offer
-            <ExternalLinkIcon className="h-4 w-4" />
-            <span className="sr-only"> {offer.name} (opens in a new tab)</span>
-          </a>
+          <div className="mt-6 flex flex-col gap-3">
+            <a
+              href={`/go/${offer.id}`}
+              target="_blank"
+              rel="noopener noreferrer nofollow sponsored"
+              className="btn-clay-lg animate-cta-glow inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-4 text-base font-bold transition-transform duration-300 hover:btn-clay-hover"
+            >
+              Visit {offer.name} now
+              <ExternalLinkIcon className="h-4 w-4" />
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+            <button
+              type="button"
+              onClick={dismiss}
+              className="rounded-full border border-brand-400/25 px-5 py-3 text-sm font-medium text-ink-600 transition-colors hover:border-brand-400/45 hover:text-ink-900"
+            >
+              Maybe later — see all offers
+            </button>
+            <Link
+              href="/#offers"
+              onClick={dismiss}
+              className="text-center text-xs text-ink-500 underline underline-offset-2 hover:text-brand-300"
+            >
+              Compare every platform
+            </Link>
+          </div>
         </div>
       </div>
     </div>

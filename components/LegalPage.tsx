@@ -2,8 +2,6 @@ import Link from "next/link";
 import type { LegalPageContent } from "@/lib/site";
 import { Container } from "@/components/Container";
 import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { ScrollToTop } from "@/components/ScrollToTop";
 import { ArrowRightIcon } from "@/components/Icons";
 
 type LegalPageProps = {
@@ -51,8 +49,6 @@ export function LegalPage({ content }: LegalPageProps) {
           </article>
         </Container>
       </main>
-      <Footer />
-      <ScrollToTop />
     </>
   );
 }

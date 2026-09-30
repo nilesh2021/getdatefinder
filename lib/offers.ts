@@ -30,6 +30,11 @@ export type Offer = {
   imageAlt: string;
   /** Optional list of regions where the offer is known to be available. */
   regions?: string[];
+  /**
+   * When false, the offer stays in the catalogue for other pages but is
+   * hidden from the homepage tabs. Omitted means listed.
+   */
+  listed?: boolean;
 };
 
 export const offers: Offer[] = [
@@ -52,8 +57,8 @@ export const offers: Offer[] = [
     description:
       "An LGBTQ+ friendly dating website built around inclusive matching and welcoming communities.",
     features: ["LGBTQ+ inclusive", "Community oriented", "Profile based discovery"],
-    category: "LGBTQ+ dating",
-    tags: ["Adult"],
+    category: "Gay dating",
+    tags: ["Gay"],
     image: "/images/real-portrait.jpg",
     imageAlt: "Portrait of a woman against a pink background",
   },
@@ -78,6 +83,7 @@ export const offers: Offer[] = [
     features: ["Mature dating niche", "Search by preference", "Simple interface"],
     category: "Mature dating",
     tags: ["Adult"],
+    listed: false,
     image: "/images/real-mature.jpg",
     imageAlt: "Portrait of a woman outdoors at sunset",
   },
@@ -102,6 +108,7 @@ export const offers: Offer[] = [
     features: ["Latin dating niche", "Cultural focus", "International reach"],
     category: "Latin dating",
     tags: ["Adult"],
+    listed: false,
     image: "/images/real-dance.jpg",
     imageAlt: "People dancing together in a city square at night",
   },
@@ -114,6 +121,7 @@ export const offers: Offer[] = [
     features: ["Senior dating niche", "Age focused search", "Easy to navigate"],
     category: "Senior dating",
     tags: ["Adult"],
+    listed: false,
     image: "/images/real-couple.jpg",
     imageAlt: "Two people forming a heart shape with their hands at sunset",
   },
@@ -150,6 +158,7 @@ export const offers: Offer[] = [
     features: ["Alternative lifestyle niche", "Interest based matching", "Private profiles"],
     category: "Alternative dating",
     tags: ["Adult"],
+    listed: false,
     image: "/images/real-dance.jpg",
     imageAlt: "People dancing together in a city square at night",
   },
@@ -174,6 +183,7 @@ export const offers: Offer[] = [
     features: ["Playful matching", "Light-hearted vibe", "Simple sign-up on the platform"],
     category: "Flirt and chat",
     tags: ["Adult"],
+    listed: false,
     image: "/images/real-portrait.jpg",
     imageAlt: "Portrait of a woman against a pink background",
   },
@@ -202,6 +212,9 @@ export const offers: Offer[] = [
     imageAlt: "Portrait of a woman outdoors at sunset",
   },
 ];
+
+/** Offers shown on the homepage tabs. Hidden offers stay in `offers` for other pages. */
+export const listedOffers = offers.filter((offer) => offer.listed !== false);
 
 /** Card data safe to send to the browser. Affiliate URLs are excluded. */
 export type PublicOffer = Omit<Offer, "url">;

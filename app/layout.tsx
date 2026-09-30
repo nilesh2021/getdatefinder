@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 import { siteConfig } from "@/lib/site";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -87,6 +88,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       ) : null}
       <body className="flex min-h-full flex-col bg-background text-foreground">
         {children}
+        <ScrollToTop />
       </body>
     </html>
   );

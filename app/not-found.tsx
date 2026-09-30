@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { ArrowRightIcon } from "@/components/Icons";
 
 export const metadata: Metadata = {
@@ -39,7 +38,6 @@ export default function NotFound() {
           </div>
         </Container>
       </main>
-      <Footer />
     </>
   );
 }

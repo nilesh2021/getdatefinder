@@ -10,9 +10,15 @@ type Filter = (typeof FILTERS)[number];
 
 type OfferBrowserProps = {
   offers: PublicOffer[];
+  variant?: "editorial" | "ad";
+  featuredOfferId?: string | null;
 };
 
-export function OfferBrowser({ offers }: OfferBrowserProps) {
+export function OfferBrowser({
+  offers,
+  variant = "editorial",
+  featuredOfferId = null,
+}: OfferBrowserProps) {
   const [filter, setFilter] = useState<Filter>("Adult");
 
   const visible = offers.filter((offer) => offer.tags.includes(filter));
@@ -52,7 +58,11 @@ export function OfferBrowser({ offers }: OfferBrowserProps) {
         <ul role="list" className="mt-9 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((offer) => (
             <li key={offer.id} className="flex">
-              <OfferCard offer={offer} />
+              <OfferCard
+                offer={offer}
+                variant={variant}
+                featured={variant === "ad" && offer.id === featuredOfferId}
+              />
             </li>
           ))}
         </ul>

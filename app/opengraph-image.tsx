@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/lib/site";
-import { offers } from "@/lib/offers";
+import { listedOffers } from "@/lib/offers";
 
 export const alt = `${siteConfig.name} - ${siteConfig.tagline}`;
 export const size = { width: 1200, height: 630 };
@@ -55,7 +55,7 @@ export default function Image() {
               fontFamily: "sans-serif",
             }}
           >
-            {`${offers.length} dating platforms to explore`}
+            {`${listedOffers.length} dating platforms to explore`}
           </div>
           <div
             style={{
