@@ -211,6 +211,23 @@ export const offers: Offer[] = [
     image: "/images/real-mature.jpg",
     imageAlt: "Portrait of a woman outdoors at sunset",
   },
+  {
+    id: "sexemulator",
+    name: "SexEmulator",
+    url: "https://t.bbwafx.com/358917/9294/0?aff_sub5=SF_006OG000004lmDN",
+    description:
+      "SexEmulator is a fully interactive adult game where you create, customize and train your own virtual sex doll and explore your fantasies.",
+    features: [
+      "Create and customize your sex doll",
+      "Train skills and preferences",
+      "Premade pornstar dolls",
+    ],
+    category: "Adult games",
+    tags: ["Games"],
+    listed: false,
+    image: "/images/sex-emulator-doll.jpg",
+    imageAlt: "Sex Emulator character creator with a 3D virtual sex doll",
+  },
 ];
 
 /** Offers shown on the homepage tabs. Hidden offers stay in `offers` for other pages. */
